@@ -16,22 +16,36 @@ import glob
 import imageio
 
 ##############################################################################
-#Lecture images puis création de la classe homologue (images 10*20 pixels)
+#Lecture images puis création de la classe homologue 
 ##############################################################################
 
-def decoupe_homologue():  
+def decoupe_homologue(taille_ligne, taille_colonne):  
+    """
+    taille_ligne : correspond au nombre de pixel en vertical
+    taille_colonne : correspond au nombre de pixel en horizontal
+    
+    Enregistre les images des descripteurs de points homologues de 
+    taille (taille_ligne, taille_colonne) dans le dossier où se trouve le script
+    """
     l = 1
-    path = os.path.abspath('/Users/guillemettefonteix/Desktop/projet_informatique/code/Etape_1/eTPR_BifurqMax/') 
-    for pic in glob.glob(path+'/eTVIR_ACR0/*.tif'):  
+    path = os.path.abspath('/Users/guillemettefonteix/Desktop/projet_informatique/code/Etape_1/eTPR_GrayMax/eTVIR_ACGT/*.tif') 
+    for pic in glob.glob(path):  
         im = imageio.imread(pic) 
-        for k in range (int(len(im)/10)):
-            new_im = np.zeros((10, 20))
-            for i in range(10):
-                for j in range (20):
-                    new_im[i][j]=im[i+k*10][j] 
+        for k in range (int(len(im)/taille_ligne)):
+            new_im = np.zeros((taille_ligne, taille_colonne))
+            for i in range(taille_ligne):
+                for j in range (taille_colonne):
+                    new_im[i][j]=im[i+k*taille_ligne][j] 
             imageio.imsave('%s.jpg'%l, new_im)
             l+=1
     return
 
 if __name__ == "__main__":
-    print(decoupe_homologue())
+    # images 10*20 pixels: descripteurs ACR0 et ACGT
+    print(decoupe_homologue(10,20))
+    
+    # images 10*18 pixels: descripteur ACGR
+    #print(decoupe_homologue(10,18))
+    
+    
+    
