@@ -61,17 +61,17 @@ def mean_std():
     
     return(mean,std)
  
-#mean, std = mean_std()
-#print(mean, std)
+mean, std = mean_std()
+
 
 ###############################################################################
 ## Load and normalizing the images training and test datasets using torchvision
 ###############################################################################
 
-mean = 0.52598995
-std  = 0.019920329
+#mean = 0.52598995
+#std  = 0.019920329
 
-#The compose function allows for multiple transforms
+##The compose function allows for multiple transforms
 transform = transforms.Compose([
     PIL.ImageOps.grayscale,                     #RGB to Gray scale
     transforms.ToTensor(),                      #transforms.ToTensor() converts our PILImage to a tensor of shape 
@@ -425,4 +425,4 @@ def reutilisation(path_im):
     return("Ces points sont {}s ".format(classes[predicted]))
 
  
-#print(reutilisation('/Users/guillemettefonteix/Desktop/projet_informatique/code/eval/12n.png'))
+#print(reutilisation('/Users/guillemettefonteix/Desktop/projet_informatique/code/eval/2.png'))
